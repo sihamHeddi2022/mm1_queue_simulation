@@ -4,15 +4,13 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 public class Simulation {
+
+    /* MM1Q Implementation for N entities */
+
     private final RandomGenerator generator;
     private final double lambda;
     private final double mu;
     private final int entityCount;
-
-    public static void runTest() {
-        Simulation simulation = new Simulation(5, 6, 10);
-        simulation.runSimulation();
-    }
 
     public Simulation(double lambda, double mu, int entityCount) {
         generator = new RandomGenerator();
@@ -21,28 +19,39 @@ public class Simulation {
         this.entityCount = entityCount;
     }
 
-    public void runSimulation() {
+    public Result runSimulation(){
+        return runSimulation(3);
+    }
+
+    public Result runSimulation(int decimalPlaces) {
         double arrivalTime = 0;
         double timeBetweenArrivals = 0;
         double startingService = 0;
-        double serviceTime = 0;
+        double serviceTime;
         double finishingTime = 0;
-        int d = 3;
-        System.out.println("entity,arrivalTime, timeBetweenArrivals,startingService,serviceTime,finishingTime");
+        Result result = new Result();
+
         for (int i = 1; i <= entityCount; i++) {
+            Service service = new Service();
             if (i == 1) {
                 timeBetweenArrivals = generator.getExponentialRandomNext(this.lambda);
-                serviceTime = generator.getExponentialRandomNext(this.mu);
-                finishingTime = startingService + serviceTime;
             } else {
                 arrivalTime = arrivalTime + timeBetweenArrivals;
                 timeBetweenArrivals = generator.getExponentialRandomNext(this.lambda);
                 startingService = Math.max(arrivalTime, finishingTime);
-                serviceTime = generator.getExponentialRandomNext(this.mu);
-                finishingTime = startingService + serviceTime;
             }
-            System.out.println(i + ", " + round(arrivalTime, d) + ", " + round(timeBetweenArrivals, d) + ", " + round(startingService, d) + ", " + round(serviceTime, d) + ", " + round(finishingTime, d));
+            serviceTime = generator.getExponentialRandomNext(this.mu);
+            finishingTime = startingService + serviceTime;
+
+            service.setArrivalTime(round(arrivalTime, decimalPlaces));
+            service.setTimeBetweenArrivals(round(timeBetweenArrivals, decimalPlaces));
+            service.setStartingService(round(startingService, decimalPlaces));
+            service.setServiceTime(round(serviceTime, decimalPlaces));
+            service.setFinishingTime(round(finishingTime, decimalPlaces));
+
+            result.addService(service);
         }
+        return result;
     }
 
     private static double round(double value, int places) {

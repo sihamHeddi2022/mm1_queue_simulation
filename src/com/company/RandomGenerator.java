@@ -2,9 +2,7 @@ package com.company;
 
 import java.util.Random;
 
-/*
-This class is responsible for all random number generation
- */
+/* This class is responsible for all random number generation */
 
 public class RandomGenerator {
     private static final Random rand = new Random();
