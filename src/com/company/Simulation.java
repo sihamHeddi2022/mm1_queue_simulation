@@ -19,7 +19,7 @@ public class Simulation {
         this.entityCount = entityCount;
     }
 
-    public Result runSimulation(){
+    public Result run(){
         return runSimulation(3);
     }
 

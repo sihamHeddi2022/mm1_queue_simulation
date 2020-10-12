@@ -8,7 +8,7 @@ public class Main {
         /* Demo of running the simulation */
 
         Simulation simulation = new Simulation(4,5,10000);
-        Result result = simulation.runSimulation();
+        Result result = simulation.run();
         Export.output(result,"results.csv");
     }
 

@@ -9,7 +9,7 @@ This runs the simulation for lambda=4, mu=5 and entity count = 10,000.
 The results of the simulation get exported to a csv file.
 
         Simulation simulation = new Simulation(4,5,10000);
-        Result result = simulation.runSimulation();
+        Result result = simulation.run();
         Export.output(result,"results.csv");
 
 ## Further Information
