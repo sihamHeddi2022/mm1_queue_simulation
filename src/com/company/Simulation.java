@@ -20,10 +20,10 @@ public class Simulation {
     }
 
     public Result run(){
-        return runSimulation(3);
+        return run(3);
     }
 
-    public Result runSimulation(int decimalPlaces) {
+    public Result run(int decimalPlaces) {
         double arrivalTime = 0;
         double timeBetweenArrivals = 0;
         double startingService = 0;
