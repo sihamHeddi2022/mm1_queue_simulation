@@ -13,7 +13,7 @@ public class Simulation {
     private final int entityCount;
 
     public Simulation(double lambda, double mu, int entityCount) {
-        generator = new RandomGenerator();
+        this.generator = new RandomGenerator();
         this.lambda = lambda;
         this.mu = mu;
         this.entityCount = entityCount;
