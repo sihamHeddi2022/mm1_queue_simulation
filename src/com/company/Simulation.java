@@ -25,7 +25,7 @@ public class Simulation {
 
     public Result run(int decimalPlaces) {
         double arrivalTime = 0;
-        double timeBetweenArrivals = 0;
+        double timeBetweenArrivals;
         double startingService = 0;
         double serviceTime;
         double finishingTime = 0;
@@ -33,11 +33,9 @@ public class Simulation {
 
         for (int i = 1; i <= entityCount; i++) {
             Service service = new Service();
-            if (i == 1) {
-                timeBetweenArrivals = generator.getExponentialRandomNext(this.lambda);
-            } else {
+            timeBetweenArrivals = generator.getExponentialRandomNext(this.lambda);
+            if (i > 1) {
                 arrivalTime = arrivalTime + timeBetweenArrivals;
-                timeBetweenArrivals = generator.getExponentialRandomNext(this.lambda);
                 startingService = Math.max(arrivalTime, finishingTime);
             }
             serviceTime = generator.getExponentialRandomNext(this.mu);
