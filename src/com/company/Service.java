@@ -5,11 +5,11 @@ public class Service {
 
     /* instance of a processed member in a queue */
 
-    double arrivalTime = 0;
-    double timeBetweenArrivals = 0;
-    double startingService = 0;
-    double serviceTime;
-    double finishingTime = 0;
+    private double arrivalTime = 0;
+    private double timeBetweenArrivals = 0;
+    private double startingService = 0;
+    private double serviceTime;
+    private double finishingTime = 0;
 
     public double getArrivalTime() {
         return arrivalTime;
