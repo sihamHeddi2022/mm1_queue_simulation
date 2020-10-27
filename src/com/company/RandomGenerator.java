@@ -4,17 +4,19 @@ import java.util.Random;
 
 /* This class is responsible for all random number generation */
 
-public class RandomGenerator {
+public class RandomGenerator implements Generator {
     private static final Random rand = new Random();
 
     public RandomGenerator() {
     }
 
-    public double getUniformRandomNext(){
+    @Override
+    public double getUniformRandomNext() {
         return rand.nextDouble();
     }
 
-    public double getExponentialRandomNext(double value) {
+    @Override
+    public double getNegativeExponentialRandomNext(double value) {
         return Math.log(1 - getUniformRandomNext()) / (-value);
     }
 

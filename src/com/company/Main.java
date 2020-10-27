@@ -9,7 +9,10 @@ public class Main {
 
         Simulation simulation = new Simulation(4,5,10000);
         Result result = simulation.run();
+        // exports to file
         Export.output(result,"results.csv");
+        // exports to console window
+        Export.output(result);
     }
 
 

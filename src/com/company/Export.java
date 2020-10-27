@@ -32,4 +32,17 @@ public class Export {
             e.printStackTrace();
         }
     }
+
+    public static void output(Result result) {
+        // output to console if no filename specified
+        long index = 0;
+        String header = "_id," + HEADER + "\n";
+        System.out.println(header);
+        for (Service service : result.getResults()) {
+            String line = index + ","  + service.toString();
+            System.out.println(line);
+            index++;
+        }
+    }
+
 }

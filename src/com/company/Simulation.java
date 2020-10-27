@@ -7,10 +7,18 @@ public class Simulation {
 
     /* MM1Q Implementation for N entities */
 
-    private final RandomGenerator generator;
+    private final Generator generator;
     private final double lambda;
     private final double mu;
     private final int entityCount;
+
+    public Simulation(double lambda, double mu, int entityCount, Generator generator) {
+        //for testing
+        this.generator = generator;
+        this.lambda = lambda;
+        this.mu = mu;
+        this.entityCount = entityCount;
+    }
 
     public Simulation(double lambda, double mu, int entityCount) {
         this.generator = new RandomGenerator();
@@ -33,12 +41,12 @@ public class Simulation {
 
         for (int i = 1; i <= entityCount; i++) {
             Service service = new Service();
-            timeBetweenArrivals = generator.getExponentialRandomNext(this.lambda);
+            timeBetweenArrivals = generator.getNegativeExponentialRandomNext(this.lambda);
             if (i > 1) {
                 arrivalTime = arrivalTime + timeBetweenArrivals;
                 startingService = Math.max(arrivalTime, finishingTime);
             }
-            serviceTime = generator.getExponentialRandomNext(this.mu);
+            serviceTime = generator.getNegativeExponentialRandomNext(this.mu);
             finishingTime = startingService + serviceTime;
 
             service.setArrivalTime(round(arrivalTime, decimalPlaces));
